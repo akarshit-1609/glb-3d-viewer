@@ -87,16 +87,14 @@
         #animPanel {
             bottom: 20px;
             left: 20px;
-            min-width: 250px;
+            min-width: 350px;
             display: none;
         }
 
         #lightPanel {
             top: 20px;
-            right:
-                20px;
-            width:
-                200px;
+            right: 20px;
+            min-width: 200px;
         }
 
         .ui-panel.hidden {
@@ -113,6 +111,66 @@
             padding: 5px 10px;
             border-radius: 4px;
             font-size: 12px;
+        }
+
+        .fullscreen-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .fullscreen-btn:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .ui-panel {
+                font-size: 10px;
+            }
+
+            #topPanel {
+                width: 150px;
+            }
+
+            #topPanel #btnInspector {
+                display: none;
+            }
+
+            #animPanel {
+                min-width: 200px;
+                width: 200px;
+            }
+
+            #lightPanel {
+                width: 100px;
+            }
+
+            #hint {
+                display: none;
+            }
+
+            .fullscreen-btn {
+                display: flex;
+                bottom: 15px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
         }
     </style>
 </head>
@@ -241,6 +299,10 @@
     </div>
 
     <div id="hint" class="ui-panel">Press <strong>H</strong> to Toggle Viewport UI</div>
+
+    <button id="fullscreenBtn" class="fullscreen-btn">
+        ⛶
+    </button>
 
     <script type="module" src="/main.js"></script>
 

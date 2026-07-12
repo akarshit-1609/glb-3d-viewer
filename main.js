@@ -104,6 +104,16 @@ document.getElementById("btnInspector").addEventListener("click", () => {
     }
 });
 
+
+// For Mobile View Only
+document.getElementById("fullscreenBtn").addEventListener("click", () => {
+  if (!document.fullscreenElement) {
+    canvas.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+});
+
 // CRITICAL: "H" Key UI Visibility Toggle
 window.addEventListener("keydown", (e) => {
     if (e.key.toLowerCase() === "h") {
