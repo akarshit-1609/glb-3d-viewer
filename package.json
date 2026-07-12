@@ -1,0 +1,33 @@
+{
+  "name": "glb-3d-viewer",
+  "version": "1.0.0",
+  "description": "Interactive GLB 3D model viewer built with Vite.",
+  "main": "main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "glb",
+    "gltf",
+    "3d",
+    "viewer",
+    "threejs",
+    "vite",
+    "webgl"
+  ],
+  "author": "Akarshit Kumar",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "babylonjs": "^9.16.1",
+    "babylonjs-loaders": "^9.16.1"
+  },
+  "allowScripts": {
+    "babylonjs@9.16.1": true
+  },
+  "devDependencies": {
+    "vite": "^8.1.4"
+  }
+}

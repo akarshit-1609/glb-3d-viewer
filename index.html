@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <title>Custom Local Sandbox</title>
+    <style>
+        html,
+        body,
+        #renderCanvas {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            background: #121212;
+            color: #ffffff;
+        }
+
+        #renderCanvas {
+            position: fixed;
+            inset: 0;
+        }
+
+        .backdrop {
+            backdrop-filter: blur(20px);
+            background: rgba(30, 30, 30, .55) !important;
+            border: 1px solid rgba(255, 255, 255, .08) !important;
+        }
+
+        .card {
+            transition: .3s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .45);
+        }
+
+        .card-header {
+            background: transparent;
+        }
+
+        .form-control,
+        .form-select {
+            background: #242424;
+            color: #ffffff;
+            border-color: #444;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            background: #2d2d2d;
+            color: #fff;
+        }
+
+        .form-label {
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .form-range::-webkit-slider-thumb {
+            background: #0d6efd;
+        }
+
+        .btn {
+            border-radius: 12px;
+        }
+
+        .ui-panel {
+            position: absolute;
+            z-index: 10;
+        }
+
+        #topPanel {
+            top: 20px;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        #animPanel {
+            bottom: 20px;
+            left: 20px;
+            min-width: 250px;
+            display: none;
+        }
+
+        #lightPanel {
+            top: 20px;
+            right:
+                20px;
+            width:
+                200px;
+        }
+
+        .ui-panel.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.95);
+        }
+
+        #hint {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body class="bg-dark">
+
+    <canvas id="renderCanvas"></canvas>
+
+    <div id="topPanel" class="ui-panel">
+
+        <div class="card bg-dark bg-opacity-75 border-secondary shadow-lg rounded-4 backdrop">
+
+            <div class="card-header border-secondary">
+                <h5 class="mb-0">
+                    <i class="bi bi-box"></i>
+                    Sandbox Controls
+                </h5>
+            </div>
+
+            <div class="card-body">
+
+                <label class="form-label">Import Model</label>
+
+                <input type="file" id="fileInput" class="form-control" accept=".glb,.gltf">
+
+                <button id="btnInspector" class="btn btn-primary w-100 mt-3">
+
+                    <i class="bi bi-bug"></i>
+                    Toggle Inspector
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="animPanel" class="ui-panel">
+
+        <div class="card bg-dark bg-opacity-75 border-secondary shadow-lg rounded-4 backdrop">
+
+            <div class="card-header border-secondary">
+
+                <h5 class="mb-0">
+                    <i class="bi bi-film"></i>
+                    Animations
+                </h5>
+
+            </div>
+
+            <div class="card-body">
+
+                <label class="form-label">
+                    Animation Clip
+                </label>
+
+                <select id="animSelect" class="form-select">
+
+                    <option>No Animation</option>
+
+                </select>
+
+                <div class="d-grid gap-2 mt-3">
+
+                    <button id="btnPlay" class="btn btn-success">
+
+                        <i class="bi bi-play-fill"></i>
+                        Play
+
+                    </button>
+
+                    <button id="btnPause" class="btn btn-warning">
+
+                        <i class="bi bi-pause-fill"></i>
+                        Pause
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="lightPanel" class="ui-panel">
+
+        <div class="card bg-dark bg-opacity-75 border-secondary shadow-lg rounded-4 backdrop">
+
+            <div class="card-header border-secondary">
+
+                <h5 class="mb-0">
+
+                    <i class="bi bi-sun"></i>
+
+                    Environment
+
+                </h5>
+
+            </div>
+
+            <div class="card-body">
+
+                <label class="form-label">
+
+                    Exposure
+
+                </label>
+
+                <input id="lightIntensity" type="range" class="form-range" min="0" max="3" step="0.1" value="1">
+
+                <label class="form-label mt-3">
+
+                    Background Color
+
+                </label>
+
+                <input id="bgColor" type="color" class="form-control form-control-color w-100" value="#1a1a1a">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="hint" class="ui-panel">Press <strong>H</strong> to Toggle Viewport UI</div>
+
+    <script type="module" src="/main.js"></script>
+
+</body>
+
+</html>
