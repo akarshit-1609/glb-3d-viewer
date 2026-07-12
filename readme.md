@@ -2,6 +2,12 @@
 
 An interactive web application for viewing and exploring GLB (GL Transmission Format Binary) 3D models directly in your browser. Load GLB files, inspect models in real time, customize the background color, adjust scene lighting, and navigate the scene with smooth camera controls—all powered by Vite for a fast development experience.
 
+## Live Demo
+
+🚀 View the live application:
+
+**[GLB 3d Model Viewer Live](https://akarshit-1609.github.io/glb-3d-viewer/)**
+
 ## Prerequisites
 
 Make sure you have the following installed:
