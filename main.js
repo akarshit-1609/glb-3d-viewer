@@ -28,6 +28,38 @@ const createScene = () => {
 
 scene = createScene();
 
+// Default 3d Model Sample
+async function defaultModel() {
+    const meshesToClear = [...scene.meshes];
+    meshesToClear.forEach(mesh => mesh.dispose());
+    
+    if (scene.animationGroups) {
+        scene.animationGroups.forEach(group => group.dispose());
+    }
+    
+    const fileUrl = "https://raw.githubusercontent.com/akarshit-1609/glb-3d-viewer/refs/heads/main/sample.glb";
+
+    const response = await fetch(fileUrl);
+    const blob = await response.blob();
+
+    const blobUrl = URL.createObjectURL(blob);
+
+    BABYLON.SceneLoader.Append("", blobUrl, scene, (loadedScene) => {
+        const currentLightIntensity = parseFloat(document.getElementById("lightIntensity").value);
+        const currentBgColor = document.getElementById("bgColor").value;
+
+        loadedScene.clearColor = BABYLON.Color3.FromHexString(currentBgColor);
+        loadedScene.lights.forEach(l => l.intensity = currentLightIntensity);
+        loadedScene.createDefaultCameraOrLight(true, true, true);
+        loadedScene.activeCamera.attachControl(canvas, true);
+        URL.revokeObjectURL(blobUrl);
+
+        setupAnimationControls(loadedScene);
+    }, null, null, ".glb");
+}
+
+defaultModel();
+
 // File Handling & Dynamic Loading
 document.getElementById('fileInput').addEventListener('change', (evt) => {
     if (evt.target.files.length === 0) return;
